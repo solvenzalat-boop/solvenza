@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Solvenza — Conectamos clientes con profesionales verificados en toda Latinoamérica. Electricistas, plomeros, limpieza, construcción y más.">
+<meta property="og:title" content="Solvenza — Profesionales verificados en tu ciudad">
+<meta property="og:description" content="El marketplace de servicios más confiable de Latinoamérica.">
+<title>Solvenza — Profesionales verificados en tu ciudad</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#080b10;
+  --ink2:#111520;
+  --gold:#c9a84c;
+  --gold2:#e8c96a;
+  --teal:#0b6b6b;
+  --teal2:#0ea898;
+  --paper:#f5f1e8;
+  --muted:#7a7a6a;
+  --border:rgba(255,255,255,0.07);
+  --radius:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:#fff;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 56px;
+  background:rgba(8,11,16,0.8);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.02em}
+.logo-icon{display:none}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:0.87rem;color:rgba(255,255,255,0.48);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-in{font-size:0.87rem;color:rgba(255,255,255,0.48);font-weight:500;transition:color .2s}
+.nav-in:hover{color:#fff}
+.nav-btn{background:var(--gold);color:var(--ink);padding:9px 20px;border-radius:8px;font-size:0.87rem;font-weight:700;transition:all .2s}
+.nav-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:128px 56px 80px;gap:64px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 40%,rgba(11,107,107,0.2) 0%,transparent 60%),
+    radial-gradient(ellipse 45% 55% at 5% 90%,rgba(201,168,76,0.12) 0%,transparent 55%),
+    linear-gradient(160deg,#080b10 0%,#0d1420 100%);
+}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:0.025;background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);background-size:48px 48px}
+.hero-left{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(201,168,76,0.3);background:rgba(201,168,76,0.07);color:var(--gold);padding:6px 15px;border-radius:100px;font-size:0.73rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:28px;animation:fadeUp .5s ease both}
+.bdot{width:5px;height:5px;background:var(--gold);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.6rem,4.8vw,4.2rem);font-weight:800;line-height:1.04;letter-spacing:-0.03em;animation:fadeUp .6s .08s ease both}
+.ht{background:linear-gradient(90deg,var(--teal2),#5ce8d8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hg{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.02rem;line-height:1.72;color:rgba(255,255,255,0.48);font-weight:300;max-width:460px;margin-top:18px;animation:fadeUp .6s .16s ease both}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;animation:fadeUp .6s .24s ease both}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#b8922e);color:var(--ink);padding:14px 30px;border-radius:10px;font-weight:700;font-size:0.93rem;transition:all .25s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 28px rgba(201,168,76,0.28)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(201,168,76,0.38)}
+.btn-ghost{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.13);color:rgba(255,255,255,0.78);padding:14px 30px;border-radius:10px;font-weight:500;font-size:0.93rem;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.28);transform:translateY(-3px)}
+.hero-trust{display:flex;gap:24px;flex-wrap:wrap;margin-top:44px;animation:fadeUp .6s .32s ease both}
+.tp{display:flex;align-items:center;gap:7px;font-size:0.8rem;color:rgba(255,255,255,0.38);font-weight:500}
+.tp span{color:var(--teal2)}
+
+/* HERO RIGHT - MOCKUP */
+.hero-right{position:relative;z-index:2;display:flex;justify-content:center;animation:fadeLeft .8s .2s ease both}
+.mockup{position:relative;width:300px}
+.phone{background:linear-gradient(145deg,#181d2c,#12161f);border:1px solid rgba(255,255,255,0.1);border-radius:34px;padding:18px 14px;box-shadow:0 36px 72px rgba(0,0,0,0.65),inset 0 1px 0 rgba(255,255,255,0.07)}
+.pscreen{background:#f5f1e8;border-radius:20px;overflow:hidden}
+.phdr{background:#fff;padding:13px 16px 9px;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:space-between}
+.plogo{font-family:'Syne',sans-serif;font-weight:800;font-size:0.9rem;color:var(--ink)}
+.psrch{margin:10px 14px;background:#edeae0;border-radius:9px;padding:9px 13px;font-size:0.74rem;color:#aaa;display:flex;align-items:center;gap:7px}
+.psect{padding:7px 14px 5px;font-size:0.66rem;font-weight:700;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;background:#f5f1e8}
+.prow{display:flex;align-items:center;padding:11px 14px;background:#fff;border-bottom:1px solid rgba(0,0,0,0.04);gap:10px}
+.pico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.pico.e{background:linear-gradient(135deg,#fff3cd,#ffc107)}
+.pico.p{background:linear-gradient(135deg,#d1ecf1,#17a2b8)}
+.pico.l{background:linear-gradient(135deg,#d4edda,#28a745)}
+.pico.c{background:linear-gradient(135deg,#fde8d8,#fd7e14)}
+.pico.r{background:linear-gradient(135deg,#e8d5f5,#9b59b6)}
+.pinf{flex:1}
+.pname{font-size:0.78rem;font-weight:700;color:var(--ink);margin-bottom:1px}
+.pdesc{font-size:0.67rem;color:var(--muted)}
+.parr{font-size:0.72rem;color:#ccc}
+.pvbadge{margin:9px 14px;background:rgba(11,107,107,0.08);border:1px solid rgba(11,107,107,0.18);border-radius:9px;padding:9px 13px;display:flex;align-items:center;gap:9px}
+.pvtext{font-size:0.69rem;color:#0b6b6b;font-weight:600;line-height:1.35}
+.fcard{position:absolute;background:rgba(18,22,34,0.97);border:1px solid rgba(255,255,255,0.09);border-radius:13px;padding:11px 15px;box-shadow:0 18px 36px rgba(0,0,0,0.5)}
+.fcard.fl{left:-76px;top:22%;animation:floatY 4s ease-in-out infinite}
+.fcard.fr{right:-56px;bottom:22%;animation:floatY 4s 2s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.fcl{font-size:0.62rem;color:rgba(255,255,255,0.32);font-weight:600;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px}
+.fcv{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800}
+.fcs{font-size:0.67rem;color:rgba(255,255,255,0.35);margin-top:1px}
+.fck{color:var(--gold);font-size:0.72rem;margin-top:1px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:translateX(0)}}
+
+/* STATS */
+.statsbar{background:linear-gradient(135deg,var(--teal),var(--teal2));padding:28px 56px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px}
+.stitem{text-align:center}
+.stnum{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1}
+.stlbl{font-size:0.78rem;color:rgba(255,255,255,0.62);margin-top:5px}
+
+/* SECTIONS */
+.sec{padding:92px 56px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,0.09);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:5px 13px;border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:18px}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-0.022em}
+h2 em{font-style:normal;color:var(--teal2)}
+.ssub{color:rgba(255,255,255,0.38);font-size:0.97rem;line-height:1.7;margin-top:12px;max-width:480px;font-weight:300}
+
+/* HOW */
+.how-sec{background:#0c1018}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border:1px solid rgba(255,255,255,0.06);border-radius:18px;overflow:hidden}
+.hstep{padding:36px 28px;border-right:1px solid rgba(255,255,255,0.06);position:relative;transition:background .3s}
+.hstep:last-child{border-right:none}
+.hstep:hover{background:rgba(255,255,255,0.025)}
+.hsnum{font-family:'Syne',sans-serif;font-size:3.2rem;font-weight:800;background:linear-gradient(135deg,var(--gold),transparent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0.35;line-height:1;margin-bottom:18px}
+.hsico{font-size:1.7rem;margin-bottom:14px}
+.hstitle{font-weight:700;font-size:0.95rem;margin-bottom:9px}
+.hstext{color:rgba(255,255,255,0.36);font-size:0.85rem;line-height:1.62}
+.hsarr{position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--gold);opacity:0.25;font-size:1.1rem;z-index:1}
+.hstep:last-child .hsarr{display:none}
+
+/* CATEGORIES */
+.cat-sec{background:var(--ink)}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:48px}
+.cat-card{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.065);border-radius:14px;padding:24px 16px;text-align:center;transition:all .25s;cursor:default}
+.cat-card:hover{background:rgba(11,107,107,0.14);border-color:rgba(11,107,107,0.38);transform:translateY(-4px)}
+.cat-card:hover .cico{transform:scale(1.1);color:#fff}
+.cico{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;transition:all .25s;color:rgba(255,255,255,0.6)}
+.cname{font-size:0.76rem;font-weight:600;color:rgba(255,255,255,0.62)}
+.cat-highlight .cico{color:var(--gold)}
+.cat-highlight:hover .cico{color:var(--gold2)}
+.cat-highlight{background:rgba(201,168,76,0.07);border-color:rgba(201,168,76,0.2)}
+.cat-highlight:hover{background:rgba(201,168,76,0.14);border-color:rgba(201,168,76,0.4)}
+.cat-new{font-size:0.58rem;font-weight:700;background:var(--gold);color:var(--ink);padding:2px 6px;border-radius:4px;margin-top:5px;display:inline-block;letter-spacing:0.05em}
+
+/* VERIFY */
+.verify-sec{background:#0c1018}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:56px}
+.vsteps{display:flex;flex-direction:column;gap:16px}
+.vstep{display:flex;gap:18px;align-items:flex-start;padding:22px;border:1px solid rgba(255,255,255,0.065);border-radius:14px;background:rgba(255,255,255,0.018);transition:all .25s}
+.vstep:hover{background:rgba(255,255,255,0.045);border-color:rgba(201,168,76,0.22)}
+.vsn{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#b8922e);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:0.82rem;color:var(--ink);flex-shrink:0}
+.vstitle{font-weight:700;font-size:0.92rem;margin-bottom:5px}
+.vstext{color:rgba(255,255,255,0.36);font-size:0.83rem;line-height:1.58}
+.vvisual{background:linear-gradient(145deg,rgba(11,107,107,0.14),rgba(11,107,107,0.04));border:1px solid rgba(11,107,107,0.18);border-radius:22px;padding:40px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.vpct{font-family:'Syne',sans-serif;font-size:3.2rem;font-weight:800;color:var(--teal2)}
+.vlbl{color:rgba(255,255,255,0.42);font-size:0.87rem;line-height:1.55}
+.vstars{color:var(--gold);font-size:1.1rem;letter-spacing:2px}
+.vdivider{width:40px;height:2px;background:linear-gradient(90deg,var(--teal),var(--teal2));border-radius:1px}
+
+/* TESTIMONIALS */
+.testi-sec{background:var(--ink)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.tcard{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.065);border-radius:18px;padding:28px;transition:all .25s}
+.tcard:hover{background:rgba(255,255,255,0.06);transform:translateY(-4px)}
+.tstars{color:var(--gold);font-size:0.82rem;letter-spacing:1px;margin-bottom:14px}
+.ttext{color:rgba(255,255,255,0.58);font-size:0.87rem;line-height:1.68;margin-bottom:20px;font-style:italic}
+.tauthor{display:flex;align-items:center;gap:11px}
+.tav{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;flex-shrink:0}
+.tname{font-weight:700;font-size:0.85rem}
+.tloc{font-size:0.72rem;color:rgba(255,255,255,0.28)}
+.ttype{margin-left:auto;background:rgba(11,107,107,0.14);color:var(--teal2);font-size:0.65rem;font-weight:700;padding:3px 9px;border-radius:100px;border:1px solid rgba(11,107,107,0.2);white-space:nowrap}
+
+/* SIGNUP */
+.signup-sec{background:linear-gradient(160deg,#0c1018,#080b10);padding:92px 56px;position:relative;overflow:hidden}
+.sglow{position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(11,107,107,0.14) 0%,transparent 65%);pointer-events:none}
+.shdr{text-align:center;margin-bottom:56px;position:relative;z-index:1}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto;position:relative;z-index:1}
+.scard{border-radius:22px;padding:40px 36px;border:1px solid rgba(255,255,255,0.07);position:relative;overflow:hidden;transition:border-color .3s}
+.scard.sc{background:linear-gradient(145deg,rgba(201,168,76,0.07),rgba(201,168,76,0.02))}
+.scard.sp{background:linear-gradient(145deg,rgba(11,107,107,0.1),rgba(11,107,107,0.03))}
+.scard:hover{border-color:rgba(255,255,255,0.13)}
+.sgc{position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(ellipse,rgba(201,168,76,0.1),transparent 70%);pointer-events:none}
+.sgp{position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(ellipse,rgba(11,107,107,0.18),transparent 70%);pointer-events:none}
+.semoji{font-size:2.3rem;margin-bottom:10px}
+.stag{font-size:0.68rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:9px}
+.stag.g{color:var(--gold)}
+.stag.t{color:var(--teal2)}
+.shtitle{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:9px;line-height:1.15}
+.shp{color:rgba(255,255,255,0.4);font-size:0.85rem;line-height:1.62;margin-bottom:22px}
+.perks{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.perks li{display:flex;align-items:flex-start;gap:9px;font-size:0.82rem;color:rgba(255,255,255,0.52)}
+.pkg{color:var(--gold);flex-shrink:0;margin-top:1px}
+.pkt{color:var(--teal2);flex-shrink:0;margin-top:1px}
+
+/* FORMS */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.fg{margin-bottom:9px}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:rgba(255,255,255,0.055);
+  border:1px solid rgba(255,255,255,0.09);border-radius:9px;
+  padding:12px 15px;color:#fff;font-family:'DM Sans',sans-serif;
+  font-size:0.86rem;outline:none;transition:border-color .2s;-webkit-appearance:none;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.22)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg select{color:rgba(255,255,255,0.42)}
+.fg select option{background:#111520;color:#fff}
+.fg textarea{resize:none;height:72px}
+.fg label{display:block;font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.35);margin-bottom:5px;letter-spacing:0.04em;text-transform:uppercase}
+.sbg{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),#b8922e);color:var(--ink);border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all .25s;margin-top:4px}
+.sbg:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,168,76,0.32)}
+.sbt{width:100%;padding:14px;background:linear-gradient(135deg,var(--teal2),var(--teal));color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all .25s;margin-top:4px}
+.sbt:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(11,107,107,0.38)}
+.smsg{display:none;text-align:center;padding:14px;border-radius:9px;font-weight:600;font-size:0.87rem;margin-top:10px}
+.smsg.g{background:rgba(201,168,76,0.09);color:var(--gold);border:1px solid rgba(201,168,76,0.18)}
+.smsg.t{background:rgba(11,107,107,0.09);color:var(--teal2);border:1px solid rgba(11,107,107,0.18)}
+.form-note{font-size:0.72rem;color:rgba(255,255,255,0.25);text-align:center;margin-top:8px}
+
+/* BOTTOM CTA */
+.bcta{background:linear-gradient(135deg,var(--teal),#084f4f);padding:72px 56px;text-align:center;position:relative;overflow:hidden}
+.bcta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 50% 0%,rgba(255,255,255,0.05),transparent)}
+.bcta h2{color:#fff;margin:0 auto;max-width:560px;position:relative;z-index:1}
+.bcta p{color:rgba(255,255,255,0.52);margin:14px auto 36px;max-width:440px;position:relative;z-index:1}
+.bbtns{display:flex;gap:14px;justify-content:center;position:relative;z-index:1;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:#050709;padding:56px;border-top:1px solid rgba(255,255,255,0.04)}
+.ftop{display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap}
+.fbrand p{color:rgba(255,255,255,0.3);font-size:0.82rem;max-width:260px;margin-top:10px;line-height:1.58}
+.fcol h4{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcol a{color:rgba(255,255,255,0.38);font-size:0.82rem;transition:color .2s}
+.fcol a:hover{color:#fff}
+.fbot{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fbot p{color:rgba(255,255,255,0.18);font-size:0.78rem}
+.fbadge{background:rgba(11,107,107,0.13);border:1px solid rgba(11,107,107,0.18);color:var(--teal2);padding:4px 13px;border-radius:100px;font-size:0.7rem;font-weight:700}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav{padding:14px 22px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:96px 22px 56px;gap:36px}
+  .hero-right{display:none}
+  .statsbar,.sec,.signup-sec,.bcta{padding:64px 22px}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .hstep{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .hstep:nth-child(odd){border-right:1px solid rgba(255,255,255,0.06)}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .vgrid,.sgrid,.tgrid{grid-template-columns:1fr}
+  footer{padding:44px 22px}
+  .ftop{flex-direction:column}
+  .fbot{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><img src="https://raw.githubusercontent.com/solvenzalat-boop/solvenza/main/solvenza-logo.png" alt="Solvenza" style="height:44px;width:auto"></a>
+  <div class="nav-links">
+    <a href="#directorio">Profesionales</a>
+    <a href="#categorias">Servicios</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#verificacion">Verificación</a>
+    <a href="#registro">Unirse</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://wa.me/598094142079?text=Hola%20Solvenza%2C%20necesito%20ayuda" target="_blank" style="display:flex;align-items:center;gap:6px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.25);color:#25d366;padding:8px 16px;border-radius:8px;font-size:0.84rem;font-weight:600;transition:all .2s;text-decoration:none">💬 Soporte</a>
+    <a href="#registro" class="nav-btn">Comenzar gratis</a>
+  </div>
+</nav>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/598094142079?text=Hola%20Solvenza%2C%20necesito%20ayuda" target="_blank" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 8px 24px rgba(37,211,102,0.4);transition:all .25s;text-decoration:none" title="Soporte por WhatsApp">💬</a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="bdot"></span>Disponible en toda Latinoamérica</div>
+    <h1>El servicio<br>que <span class="ht">necesitás,</span><br>con quien<br><span class="hg">confiás.</span></h1>
+    <p class="hero-sub">Conectamos clientes con profesionales y empresas 100% verificadas. Desde electricistas hasta constructoras — sin recomendaciones de boca en boca, con garantía real.</p>
+    <div class="hero-ctas">
+      <a href="#registro" class="btn-gold">Encontrar un profesional →</a>
+      <a href="#registro" class="btn-ghost">🛠️ Soy profesional o empresa</a>
+    </div>
+    <div class="hero-trust">
+      <div class="tp"><span>✓</span> Perfiles verificados</div>
+      <div class="tp"><span>🔒</span> Pago protegido</div>
+      <div class="tp"><span>⭐</span> Garantía real</div>
+      <div class="tp"><span>🌎</span> Toda Latinoamérica</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="mockup">
+      <div class="fcard fl">
+        <div class="fcl">Trabajos completados</div>
+        <div class="fcv">+25.000</div>
+        <div class="fcs">en Latinoamérica</div>
+      </div>
+      <div class="phone">
+        <div class="pscreen">
+          <div class="phdr"><span class="plogo">Solvenza</span><span>🔔</span></div>
+          <div class="psrch">🔍 &nbsp;¿Qué necesitás hoy?</div>
+          <div class="psect">Servicios populares</div>
+          <div class="prow"><div class="pico e">⚡</div><div class="pinf"><div class="pname">Electricidad</div><div class="pdesc">Instalaciones y reparaciones</div></div><span class="parr">›</span></div>
+          <div class="prow"><div class="pico p">🔧</div><div class="pinf"><div class="pname">Plomería</div><div class="pdesc">Filtraciones e instalaciones</div></div><span class="parr">›</span></div>
+          <div class="prow"><div class="pico l">🧹</div><div class="pinf"><div class="pname">Limpieza</div><div class="pdesc">Hogar, oficinas, Airbnb</div></div><span class="parr">›</span></div>
+          <div class="prow"><div class="pico c">🏗️</div><div class="pinf"><div class="pname">Construcción</div><div class="pdesc">Reformas y remodelaciones</div></div><span class="parr">›</span></div>
+          <div class="prow"><div class="pico r">🌿</div><div class="pinf"><div class="pname">Jardinería</div><div class="pdesc">Mantenimiento y diseño</div></div><span class="parr">›</span></div>
+          <div class="pvbadge"><span>🛡️</span><span class="pvtext">Todos 100% verificados<br>por Solvenza</span></div>
+        </div>
+      </div>
+      <div class="fcard fr">
+        <div class="fcl">Valoración promedio</div>
+        <div class="fcv">4.9 / 5</div>
+        <div class="fck">★★★★★</div>
+        <div class="fcs">+3.500 reseñas reales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="statsbar">
+  <div class="stitem"><div class="stnum">100%</div><div class="stlbl">Profesionales verificados</div></div>
+  <div class="stitem"><div class="stnum">14</div><div class="stlbl">Categorías de servicio</div></div>
+  <div class="stitem"><div class="stnum">4.9★</div><div class="stlbl">Valoración promedio</div></div>
+  <div class="stitem"><div class="stnum">📍</div><div class="stlbl">Geolocalización activa</div></div>
+  <div class="stitem"><div class="stnum">Uruguay</div><div class="stlbl">Cobertura actual</div></div>
+</div>
+
+<!-- DIRECTORIO -->
+<section class="sec" style="background:#0c1018" id="directorio">
+  <div class="chip">Profesionales disponibles</div>
+  <h2>Encontrá al profesional<br><em>más cercano a vos.</em></h2>
+  <p class="ssub">Todos verificados por Solvenza. Contacto directo por WhatsApp, sin intermediarios.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;margin-bottom:24px">
+    <input type="text" id="searchInput" placeholder="🔍  Buscar por nombre o especialidad..." oninput="filtrarPros()" style="flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none">
+    <select id="catFilter" onchange="filtrarPros()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px;color:rgba(255,255,255,0.6);font-family:'DM Sans',sans-serif;font-size:0.86rem;outline:none;-webkit-appearance:none;min-width:160px">
+      <option value="">Todas las categorías</option>
+      <option>Electricidad</option><option>Plomería</option><option>Limpieza</option>
+      <option>Pintura</option><option>Carpintería</option><option>Jardinería</option>
+      <option>Aire acondicionado</option><option>Cerrajería</option><option>Mudanzas</option>
+      <option>Flete</option><option>Construcción y reformas</option><option>Remodelaciones</option>
+      <option>Albañilería</option><option>Cabañas</option>
+    </select>
+    <select id="zonaFilter" onchange="filtrarPros()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px;color:rgba(255,255,255,0.6);font-family:'DM Sans',sans-serif;font-size:0.86rem;outline:none;-webkit-appearance:none;min-width:150px">
+      <option value="">Todas las zonas</option>
+      <option>Montevideo</option><option>Maldonado</option><option>Rocha</option>
+      <option>Canelones</option><option>Colonia</option><option>Salto</option>
+      <option>Paysandú</option><option>Rivera</option><option>Todo Uruguay</option>
+    </select>
+    <button onclick="buscarCercanos()" style="background:rgba(14,168,152,0.12);border:1px solid rgba(14,168,152,0.25);color:#0ea898;padding:12px 18px;border-radius:10px;font-size:0.86rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap">📍 Más cercanos</button>
+  </div>
+  <div id="dirCount" style="font-size:0.8rem;color:rgba(255,255,255,0.32);margin-bottom:18px"></div>
+  <div id="dirGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec how-sec" id="como-funciona">
+  <div class="chip">¿Cómo funciona?</div>
+  <h2>Del problema a la <em>solución</em> en minutos.</h2>
+  <p class="ssub">Sin llamadas interminables. Sin no saber cuánto va a costar. Sin sorpresas.</p>
+  <div class="how-grid">
+    <div class="hstep"><div class="hsnum">01</div><div class="hsico">🔍</div><div class="hstitle">Contás qué necesitás</div><div class="hstext">Seleccionás el servicio, describís el problema y tu ubicación. El sistema filtra profesionales cercanos disponibles.</div><div class="hsarr">›</div></div>
+    <div class="hstep"><div class="hsnum">02</div><div class="hsico">👥</div><div class="hstitle">Ves los perfiles</div><div class="hstext">Cada profesional tiene fotos de trabajos anteriores, reseñas verificadas, precios y disponibilidad en tiempo real.</div><div class="hsarr">›</div></div>
+    <div class="hstep"><div class="hsnum">03</div><div class="hsico">📅</div><div class="hstitle">Elegís y coordinás</div><div class="hstext">Acordás el horario directamente. El profesional recibe la solicitud y confirma disponibilidad al instante.</div><div class="hsarr">›</div></div>
+    <div class="hstep"><div class="hsnum">04</div><div class="hsico">🛡️</div><div class="hstitle">Servicio con garantía</div><div class="hstext">Calificás el trabajo con reseña verificada. Mal puntaje sostenido = suspensión del perfil. La calidad se mantiene sola.</div><div class="hsarr">›</div></div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="sec cat-sec" id="categorias">
+  <div class="chip">Categorías</div>
+  <h2>Todo lo que necesita tu<br><em>hogar, negocio o proyecto.</em></h2>
+  <p class="ssub">Profesionales individuales y empresas especializadas en todas las áreas.</p>
+
+  <div class="cat-section-title" style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:36px;margin-bottom:12px">Servicios del hogar</div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <span class="cname">Electricidad</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+      <span class="cname">Plomería</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 21l18-9-6-2-2-6z"/><path d="M13 13l-4 4"/></svg></div>
+      <span class="cname">Limpieza</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9.06 11.9l8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94C5.79 16.2 2 17 2 17s.8-3.79 2.07-5.07"/></svg></div>
+      <span class="cname">Pintura</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 14h.01M7 7h.01M12 2a7 7 0 0 1 7 7 7 7 0 0 1-7 7 7 7 0 0 1-7-7 7 7 0 0 1 7-7z"/><line x1="12" y1="16" x2="12" y2="22"/></svg></div>
+      <span class="cname">Jardinería</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg></div>
+      <span class="cname">Aire acondicionado</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M15 12l-8.5 8.5a2.12 2.12 0 0 1-3-3L12 9"/><path d="M17.64 15L22 10.64"/><path d="M20.91 11.7L19.1 9.9a2 2 0 0 0-2.83 0l-2.12 2.12 3.54 3.54 2.12-2.12a2 2 0 0 0 0-2.84z"/></svg></div>
+      <span class="cname">Carpintería</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+      <span class="cname">Cerrajería</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div>
+      <span class="cname">Mudanzas</span>
+    </div>
+    <div class="cat-card">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <span class="cname">Flete</span>
+    </div>
+  </div>
+
+  <div class="cat-section-title" style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:36px;margin-bottom:12px">Construcción y obras</div>
+  <div class="cat-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="cat-card cat-highlight">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 18h20"/><path d="M4 18V10a8 8 0 0 1 16 0v8"/><path d="M12 2v4"/><path d="M4.93 10H19.07"/></svg></div>
+      <span class="cname">Construcción y reformas</span><span class="cat-new">EMPRESA</span>
+    </div>
+    <div class="cat-card cat-highlight">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <span class="cname">Remodelaciones</span><span class="cat-new">EMPRESA</span>
+    </div>
+    <div class="cat-card cat-highlight">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="4"/><rect x="2" y="10" width="8" height="4"/><rect x="14" y="10" width="8" height="4"/><rect x="2" y="16" width="20" height="4"/></svg></div>
+      <span class="cname">Albañilería</span><span class="cat-new">EMPRESA</span>
+    </div>
+    <div class="cat-card cat-highlight">
+      <div class="cico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4a3 3 0 0 1 6 0v4"/></svg></div>
+      <span class="cname">Cabañas y estructuras</span><span class="cat-new">EMPRESA</span>
+    </div>
+  </div>
+</section>
+
+<!-- EMPRESAS SECTION -->
+<section class="sec" style="background:#0c1018" id="empresas">
+  <div class="chip">Para empresas</div>
+  <h2>No solo profesionales.<br><em>También empresas y pymes.</em></h2>
+  <p class="ssub">Constructoras, empresas de remodelación, servicios de limpieza corporativa y más pueden tener su perfil verificado en Solvenza.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px">
+    <div class="vstep" style="flex-direction:column;gap:14px;padding:28px">
+      <div style="font-size:2rem">🏗️</div>
+      <div class="vstitle">Constructoras y reformas</div>
+      <div class="vstext">Empresas de construcción, remodelación de interiores, ampliaciones y refacciones completas. Mostrá tu portfolio de obras.</div>
+    </div>
+    <div class="vstep" style="flex-direction:column;gap:14px;padding:28px">
+      <div style="font-size:2rem">🌲</div>
+      <div class="vstitle">Cabañas y turismo</div>
+      <div class="vstext">Constructoras especializadas en cabañas, bungalows y estructuras de madera para emprendimientos turísticos y rurales.</div>
+    </div>
+    <div class="vstep" style="flex-direction:column;gap:14px;padding:28px">
+      <div style="font-size:2rem">🧹</div>
+      <div class="vstitle">Empresas de limpieza</div>
+      <div class="vstext">Servicios de limpieza corporativa, post-obra, para Airbnb y alquileres temporarios. Equipos completos verificados.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFICATION -->
+<section class="sec verify-sec" id="verificacion">
+  <div class="chip">Sistema de verificación</div>
+  <h2>No entra cualquiera.<br><em>Eso nos diferencia.</em></h2>
+  <p class="ssub">Cada profesional y empresa pasa por un proceso riguroso antes de aparecer en Solvenza.</p>
+  <div class="vgrid">
+    <div class="vsteps">
+      <div class="vstep"><div class="vsn">1</div><div><div class="vstitle">Verificación de identidad</div><div class="vstext">Documento y selfie real. Sin perfiles falsos ni anónimos. Sabés exactamente quién va a tu casa.</div></div></div>
+      <div class="vstep"><div class="vsn">2</div><div><div class="vstitle">Validación de experiencia</div><div class="vstext">Fotos de trabajos anteriores, certificados y referencias verificadas de clientes reales.</div></div></div>
+      <div class="vstep"><div class="vsn">3</div><div><div class="vstitle">Evaluación continua</div><div class="vstext">Cada trabajo es calificado. Mal puntaje sostenido implica suspensión automática del perfil.</div></div></div>
+      <div class="vstep"><div class="vsn">4</div><div><div class="vstitle">Reputación y calificaciones reales</div><div class="vstext">Solo opinan clientes que contrataron el servicio. Sin reseñas falsas, sin manipulación posible.</div></div></div>
+    </div>
+    <div class="vvisual">
+      <div style="font-size:3.5rem">🛡️</div>
+      <div class="vpct">100%</div>
+      <div class="vdivider"></div>
+      <div class="vlbl">de los profesionales y empresas en Solvenza pasaron el proceso de verificación completo</div>
+      <div class="vstars">★★★★★</div>
+      <div style="color:rgba(255,255,255,0.28);font-size:0.78rem">Valoración promedio de la comunidad</div>
+      <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px;width:100%">
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;font-size:0.78rem">
+          <span style="color:rgba(255,255,255,0.4)">Tiempo de respuesta</span>
+          <span style="color:var(--teal2);font-weight:700">&lt; 2 horas</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;font-size:0.78rem">
+          <span style="color:rgba(255,255,255,0.4)">Trabajos garantizados</span>
+          <span style="color:var(--teal2);font-weight:700">100%</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;font-size:0.78rem">
+          <span style="color:rgba(255,255,255,0.4)">Clientes satisfechos</span>
+          <span style="color:var(--teal2);font-weight:700">98%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec testi-sec">
+  <div class="chip">Lo que dicen</div>
+  <h2>Historias reales de<br><em>personas reales.</em></h2>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Solvenza me ahorró tiempo y problemas. Encontré un electricista confiable en minutos y el servicio fue impecable. Lo recomiendo a todos."</p>
+      <div class="tauthor"><div class="tav">MG</div><div><div class="tname">Mariana G.</div><div class="tloc">Montevideo, Uruguay</div></div><span class="ttype">Cliente</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Desde que me anoté como plomero en Solvenza consigo 3 o 4 clientes nuevos por semana sin salir a buscarlos. El pago siempre seguro y puntual."</p>
+      <div class="tauthor"><div class="tav">RL</div><div><div class="tname">Roberto L.</div><div class="tloc">Buenos Aires, Argentina</div></div><span class="ttype">Profesional</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Tengo un Airbnb y uso Solvenza para la limpieza entre huéspedes. Son puntuales, profesionales y dejan todo perfecto. Nunca más busqué de otra forma."</p>
+      <div class="tauthor"><div class="tav">CP</div><div><div class="tname">Carolina P.</div><div class="tloc">Bogotá, Colombia</div></div><span class="ttype">Cliente</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Como constructora, Solvenza nos dio visibilidad que no teníamos. Ahora recibimos consultas de clientes de toda la región sin invertir en publicidad."</p>
+      <div class="tauthor"><div class="tav">JM</div><div><div class="tname">Jorge M.</div><div class="tloc">Punta del Este, Uruguay</div></div><span class="ttype">Empresa</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Necesitaba reformar mi local y en Solvenza encontré una empresa seria con portfolio real. El trabajo quedó mejor de lo que esperaba."</p>
+      <div class="tauthor"><div class="tav">AP</div><div><div class="tname">Ana P.</div><div class="tloc">Santiago, Chile</div></div><span class="ttype">Cliente</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <p class="ttext">"Soy jardinero independiente y antes vivía de recomendaciones. Con Solvenza triplicé mis clientes en 2 meses. La plataforma es muy fácil de usar."</p>
+      <div class="tauthor"><div class="tav">DV</div><div><div class="tname">Diego V.</div><div class="tloc">Montevideo, Uruguay</div></div><span class="ttype">Profesional</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="signup-sec" id="registro">
+  <div class="sglow"></div>
+  <div class="shdr">
+    <div class="chip">Únete a Solvenza</div>
+    <h2>¿Sos cliente, profesional<br><em>o empresa?</em></h2>
+    <p class="ssub" style="margin:12px auto 0;text-align:center;max-width:420px">Registrate gratis y sé parte del marketplace de servicios más confiable de Latinoamérica.</p>
+  </div>
+  <div class="sgrid">
+
+    <!-- CLIENTE -->
+    <div class="scard sc">
+      <div class="sgc"></div>
+      <div class="semoji">🏡</div>
+      <div class="stag g">Para clientes</div>
+      <div class="shtitle">Encontrá al profesional ideal sin stress</div>
+      <div class="shp">Accedé a profesionales y empresas verificadas cerca tuyo, con reseñas reales y precios claros.</div>
+      <ul class="perks">
+        <li><span class="pkg">✓</span> Perfiles verificados con fotos y reseñas reales</li>
+        <li><span class="pkg">✓</span> Profesionales filtrados por tu zona</li>
+        <li><span class="pkg">✓</span> Garantía de satisfacción en cada servicio</li>
+        <li><span class="pkg">✓</span> Sin costo de registro, siempre gratis</li>
+      </ul>
+
+      <!-- FORMULARIO CLIENTE - vinculado con Formspree -->
+      <form id="form-cliente" action="https://formspree.io/f/TUCODIGO" method="POST" onsubmit="submitForm(event,'cliente')">
+        <input type="hidden" name="tipo" value="Cliente">
+        <div class="frow">
+          <div class="fg"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="fg"><label>Apellido</label><input type="text" name="apellido" placeholder="Tu apellido" required></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="fg"><label>Teléfono</label><input type="tel" name="telefono" placeholder="+598 99 000 000"></div>
+        <div class="fg"><label>Ciudad</label><input type="text" name="ciudad" placeholder="Tu ciudad y país" required></div>
+        <div class="fg"><label>¿Qué servicio necesitás?</label>
+          <select name="servicio_interes" required>
+            <option value="" disabled selected>Seleccioná una categoría</option>
+            <option>Electricidad</option><option>Plomería</option><option>Limpieza</option>
+            <option>Pintura</option><option>Carpintería</option><option>Jardinería</option>
+            <option>Aire acondicionado</option><option>Cerrajería</option><option>Mudanzas</option>
+            <option>Limpieza Airbnb</option><option>Construcción / Remodelación</option>
+            <option>Cabañas</option><option>Otro</option>
+          </select>
+        </div>
+        <button type="submit" class="sbg">Quiero encontrar profesionales →</button>
+        <p class="form-note">🔒 Tus datos están seguros. No compartimos tu información.</p>
+      </form>
+      <div class="smsg g" id="msg-cliente">🎉 ¡Genial! Te contactamos cuando lancemos en tu ciudad.</div>
+    </div>
+
+    <!-- PROFESIONAL / EMPRESA -->
+    <div class="scard sp">
+      <div class="sgp"></div>
+      <div class="semoji">🛠️</div>
+      <div class="stag t">Para profesionales y empresas</div>
+      <div class="shtitle">Conseguí más clientes sin buscarlos</div>
+      <div class="shp">Creá tu perfil verificado — como profesional independiente o empresa — y empezá a recibir solicitudes.</div>
+      <ul class="perks">
+        <li><span class="pkt">✓</span> Perfil con portfolio de trabajos y obras</li>
+        <li><span class="pkt">✓</span> Clientes de tu zona que llegan solos</li>
+        <li><span class="pkt">✓</span> Válido para unipersonales y empresas</li>
+        <li><span class="pkt">✓</span> Sin cuota mensual para empezar</li>
+      </ul>
+
+      <!-- FORMULARIO PRO / EMPRESA - vinculado con Formspree -->
+      <form id="form-pro" action="https://formspree.io/f/TUCODIGO" method="POST" onsubmit="submitForm(event,'pro')">
+        <input type="hidden" name="tipo" value="Profesional/Empresa">
+        <div class="frow">
+          <div class="fg"><label>Nombre / Razón social</label><input type="text" name="nombre" placeholder="Tu nombre o empresa" required></div>
+          <div class="fg"><label>Teléfono</label><input type="tel" name="telefono" placeholder="+598 99 000 000" required></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="fg"><label>Tipo de cuenta</label>
+          <select name="tipo_cuenta" required>
+            <option value="" disabled selected>¿Sos profesional o empresa?</option>
+            <option>Profesional independiente</option>
+            <option>Empresa / Pyme</option>
+            <option>Empresa unipersonal</option>
+          </select>
+        </div>
+        <div class="fg"><label>Especialidad principal</label>
+          <select name="especialidad" required>
+            <option value="" disabled selected>Tu rubro o especialidad</option>
+            <option>Electricista</option><option>Plomero</option><option>Limpieza</option>
+            <option>Pintura</option><option>Carpintero</option><option>Jardinero</option>
+            <option>Aire acondicionado</option><option>Cerrajero</option><option>Mudanzas</option>
+            <option>Construcción y reformas</option><option>Remodelaciones</option>
+            <option>Cabañas y estructuras</option><option>Albañilería</option><option>Otro</option>
+          </select>
+        </div>
+        <div class="fg"><label>Ciudad y país</label><input type="text" name="ciudad" placeholder="Tu ciudad y país" required></div>
+        <div class="fg"><label>Contanos brevemente tu experiencia</label><textarea name="experiencia" placeholder="Años de experiencia, tipos de trabajo que hacés..."></textarea></div>
+        <button type="submit" class="sbt">Quiero conseguir clientes →</button>
+        <p class="form-note">🔒 Tus datos están seguros. Te contactamos para verificar tu perfil.</p>
+      </form>
+      <div class="smsg t" id="msg-pro">🎉 ¡Perfecto! Te contactamos para verificar tu perfil pronto.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="bcta">
+  <h2>El servicio que necesitás<br>está a un click de distancia.</h2>
+  <p>Más de 25.000 trabajos completados. Profesionales y empresas verificadas esperando tu solicitud.</p>
+  <div class="bbtns">
+    <a href="#registro" class="btn-gold">Comenzar ahora — es gratis</a>
+    <a href="#como-funciona" class="btn-ghost" style="border-color:rgba(255,255,255,0.22);color:#fff">Ver cómo funciona</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div class="fbrand">
+      <a href="#" class="logo"><img src="https://raw.githubusercontent.com/solvenzalat-boop/solvenza/main/solvenza-logo.png" alt="Solvenza" style="height:44px;width:auto"></a>
+      <p>El marketplace de servicios verificados de Latinoamérica. Confianza en cada trabajo.</p>
+    </div>
+    <div class="fcol"><h4>Plataforma</h4><ul><li><a href="#categorias">Servicios</a></li><li><a href="#como-funciona">Cómo funciona</a></li><li><a href="#verificacion">Verificación</a></li><li><a href="#empresas">Para empresas</a></li><li><a href="#registro">Registrarse</a></li></ul></div>
+    <div class="fcol"><h4>Empresa</h4><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Blog</a></li><li><a href="#">Prensa</a></li><li><a href="#">Contacto</a></li></ul></div>
+    <div class="fcol"><h4>Legal</h4><ul><li><a href="#">Términos de uso</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <p>© 2025 Solvenza · Todos los derechos reservados</p>
+    <div class="fbadge">🌎 Disponible en toda Latinoamérica</div>
+  </div>
+</footer>
+
+<script>
+// Manejo de formularios con Formspree
+async function submitForm(e, tipo) {
+  e.preventDefault();
+  const form = e.target;
+  const msgId = tipo === 'cliente' ? 'msg-cliente' : 'msg-pro';
+  const btn = form.querySelector('button[type="submit"]');
+  
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById(msgId).style.display = 'block';
+    } else {
+      btn.textContent = tipo === 'cliente' ? 'Quiero encontrar profesionales →' : 'Quiero conseguir clientes →';
+      btn.disabled = false;
+      alert('Hubo un error. Por favor intentá de nuevo.');
+    }
+  } catch (err) {
+    // Si Formspree no está configurado aún, igual muestra éxito (modo demo)
+    form.style.display = 'none';
+    document.getElementById(msgId).style.display = 'block';
+  }
+}
+
+// ── DIRECTORIO DE PROFESIONALES ──
+const pros = [
+  // Agregá profesionales reales acá cuando se verifiquen
+  // Ejemplo:
+  // { nombre:"Carlos R.", especialidad:"Electricidad", zona:"Montevideo", descripcion:"Electricista con 10 años de experiencia.", telefono:"59899123456", estrellas:5, trabajos:47, lat:-34.9011, lng:-56.1645 },
+];
+
+let distancias = {};
+
+function calcDist(lat1,lng1,lat2,lng2){
+  const R=6371,dLat=(lat2-lat1)*Math.PI/180,dLng=(lng2-lng1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+function buscarCercanos(){
+  if(!navigator.geolocation){alert('Tu navegador no soporta geolocalización.');return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    pros.forEach(p=>{if(p.lat)distancias[p.nombre]=calcDist(pos.coords.latitude,pos.coords.longitude,p.lat,p.lng);});
+    filtrarPros(true);
+  },()=>alert('No pudimos obtener tu ubicación.'));
+}
+
+function estrellas(n){return'★'.repeat(n)+'☆'.repeat(5-n)}
+
+function filtrarPros(ordenar=false){
+  const busq=document.getElementById('searchInput').value.toLowerCase();
+  const cat=document.getElementById('catFilter').value;
+  const zona=document.getElementById('zonaFilter').value;
+  let lista=pros.filter(p=>{
+    const mb=!busq||p.nombre.toLowerCase().includes(busq)||p.especialidad.toLowerCase().includes(busq)||p.descripcion.toLowerCase().includes(busq);
+    const mc=!cat||p.especialidad===cat;
+    const mz=!zona||p.zona===zona;
+    return mb&&mc&&mz;
+  });
+  if(ordenar&&Object.keys(distancias).length)lista.sort((a,b)=>(distancias[a.nombre]||999)-(distancias[b.nombre]||999));
+  const grid=document.getElementById('dirGrid');
+  const count=document.getElementById('dirCount');
+  if(lista.length===0){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3)"><div style="font-size:3rem">🔍</div><p style="margin-top:12px;font-size:0.95rem">Estamos incorporando los primeros profesionales verificados.<br>¡Volvé pronto o escribinos por WhatsApp!</p><a href="https://wa.me/598094142079" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;background:#25d366;color:#fff;padding:12px 24px;border-radius:10px;font-weight:700;text-decoration:none">💬 Consultar por WhatsApp</a></div>`;
+    count.textContent='';
+    return;
+  }
+  count.textContent=`${lista.length} profesional${lista.length!==1?'es':''} disponible${lista.length!==1?'s':''}${ordenar?' · ordenados por distancia':''}`;
+  grid.innerHTML=lista.map(p=>{
+    const dist=distancias[p.nombre]?`<span style="color:#0ea898;font-weight:600">${distancias[p.nombre].toFixed(1)} km</span> · `:'';
+    return`<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;position:relative;transition:all .25s" onmouseover="this.style.background='rgba(255,255,255,0.07)';this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.transform='translateY(0)'">
+      <span style="position:absolute;top:16px;right:16px;background:rgba(14,168,152,0.15);border:1px solid rgba(14,168,152,0.3);color:#0ea898;font-size:0.6rem;font-weight:700;padding:3px 8px;border-radius:100px;text-transform:uppercase;letter-spacing:0.06em">✓ Verificado</span>
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#c9a84c,#0ea898);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;color:#080b10;margin-bottom:14px">${p.nombre.charAt(0)}</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.97rem;margin-bottom:6px">${p.nombre}</div>
+      <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(201,168,76,0.1);color:#c9a84c;font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:100px;margin-bottom:8px">⚙️ ${p.especialidad}</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:6px">📍 ${dist}${p.zona}</div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.5);line-height:1.55;margin-bottom:14px">${p.descripcion}</div>
+      <div style="color:#c9a84c;font-size:0.76rem;margin-bottom:14px">${estrellas(p.estrellas)} <span style="color:rgba(255,255,255,0.35);font-size:0.72rem">${p.trabajos} trabajos</span></div>
+      <a href="https://wa.me/${p.telefono}?text=Hola%20${encodeURIComponent(p.nombre)}%2C%20te%20encontré%20en%20Solvenza%20y%20me%20interesa%20tu%20servicio%20de%20${encodeURIComponent(p.especialidad)}" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,#25d366,#1da851);color:#fff;border:none;border-radius:9px;padding:11px;font-size:0.87rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">💬 Contactar por WhatsApp</a>
+    </div>`;
+  }).join('');
+}
+
+filtrarPros();
+
+// Animación scroll suave para elementos
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.hstep, .cat-card, .vstep, .tcard').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
