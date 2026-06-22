@@ -591,8 +591,8 @@ footer{background:#050709;padding:56px;border-top:1px solid rgba(255,255,255,0.0
         <li><span class="pkg">✓</span> Sin costo de registro, siempre gratis</li>
       </ul>
 
-      <!-- FORMULARIO CLIENTE - vinculado con Formspree -->
-      <form id="form-cliente" action="https://formspree.io/f/TUCODIGO" method="POST" onsubmit="submitForm(event,'cliente')">
+      <!-- FORMULARIO CLIENTE - conectado con Supabase -->
+      <form id="form-cliente" onsubmit="submitForm(event,'cliente')">
         <input type="hidden" name="tipo" value="Cliente">
         <div class="frow">
           <div class="fg"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
@@ -629,8 +629,8 @@ footer{background:#050709;padding:56px;border-top:1px solid rgba(255,255,255,0.0
         <li><span class="pkt">✓</span> Sin cuota mensual para empezar</li>
       </ul>
 
-      <!-- FORMULARIO PRO / EMPRESA - vinculado con Formspree -->
-      <form id="form-pro" action="https://formspree.io/f/TUCODIGO" method="POST" onsubmit="submitForm(event,'pro')">
+      <!-- FORMULARIO PRO / EMPRESA - conectado con Supabase -->
+      <form id="form-pro" onsubmit="submitForm(event,'pro')">
         <input type="hidden" name="tipo" value="Profesional/Empresa">
         <div class="frow">
           <div class="fg"><label>Nombre / Razón social</label><input type="text" name="nombre" placeholder="Tu nombre o empresa" required></div>
@@ -658,6 +658,13 @@ footer{background:#050709;padding:56px;border-top:1px solid rgba(255,255,255,0.0
             <option>Ninera</option><option>Clases particulares</option><option>Eventos</option><option>Otro</option>          </select>
         </div>
         <div class="fg"><label>Ciudad y país</label><input type="text" name="ciudad" placeholder="Tu ciudad y país" required></div>
+        <input type="hidden" name="lat" id="pro-lat">
+        <input type="hidden" name="lng" id="pro-lng">
+        <div class="fg">
+          <label>Ubicación para búsquedas cercanas</label>
+          <button type="button" id="geo-pro-btn" class="sbt" style="margin-top:0">Usar mi ubicación</button>
+          <p class="form-note" id="geo-pro-status">Opcional. Solo se usa para calcular distancia.</p>
+        </div>
         <div class="fg"><label>Contanos brevemente tu experiencia</label><textarea name="experiencia" placeholder="Años de experiencia, tipos de trabajo que hacés..."></textarea></div>
         <button type="submit" class="sbt">Quiero conseguir clientes →</button>
         <p class="form-note">🔒 Tus datos están seguros. Te contactamos para verificar tu perfil.</p>
@@ -694,7 +701,7 @@ footer{background:#050709;padding:56px;border-top:1px solid rgba(255,255,255,0.0
   </div>
 </footer>
 
-<script>
+<script type="text/plain" id="legacy-script">
 // Manejo de formularios con Formspree
 function guardarProDemo(form){
   const data = new FormData(form);
@@ -827,5 +834,7 @@ document.querySelectorAll('.hstep, .cat-card, .vstep, .tcard').forEach(el => {
   observer.observe(el);
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
 </body>
 </html>
